@@ -1,6 +1,11 @@
 ## 需求
 php version 8.3
 
+## 流程
+使用者 → [允許推播] → 前端拿 token → 傳給後端 → 後端存 token 並推播 Firebase 
+
+→ 傳送給對應設備 → 前端 onMessage / firebase-messaging-sw.js 處理顯示  
+
 ## firebase.js
 修改 firebaseConfig、vapidKey，參數由 firebase console 取得
 
