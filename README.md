@@ -6,11 +6,11 @@ php version 8.3
 
 → 傳送給對應設備 → 前端 onMessage / firebase-messaging-sw.js 處理顯示  
 
-## firebase.js
-修改 firebaseConfig、vapidKey，參數由 firebase console 取得
-
-## firebase-messaging-sw
-修改 firebaseConfig，參數由 firebase console 取得
+## 設置
+- firebase console 產生密鑰 adminsdk json 修改名稱 => my-firebase-adminsdk.json 放置根目錄
+- firebase.js 修改 firebaseConfig、vapidKey，參數由 firebase console 取得
+- firebase-messaging-sw.js 修改 firebaseConfig，參數由 firebase console 取得
+- token 由 receive.html 取得 firebase.js token 傳至後端
 
 ## Curl 推播訊息
 ```
@@ -42,7 +42,12 @@ curl --location 'https://fcm.googleapis.com/v1/projects/<YOUR-PROJECT-ID>/messag
 <CLIENT_TOKEN> 由 receive.html 取得 firebase.js token
 ```
 
-## send.php 推播訊息
-firebase console 產生密鑰 adminsdk json 修改名稱 => my-firebase-adminsdk.json
+## 功能
+```
+send.php 推播訊息(單個設備)
 
-token 由 receive.html 取得 firebase.js token
+subscribeToTopic.php 訂閱主題
+
+sendToTopic.php 推播訊息至主題(需先訂閱)
+```
+
