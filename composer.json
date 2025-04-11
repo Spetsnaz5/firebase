@@ -1,0 +1,6 @@
+{
+    "require": {
+        "kreait/firebase-php": "^7.18",
+        "symfony/var-dumper": "^7.2"
+    }
+}
