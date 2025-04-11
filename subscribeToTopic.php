@@ -3,8 +3,6 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Kreait\Firebase\Factory;
-use Kreait\Firebase\Messaging\CloudMessage;
-use Kreait\Firebase\Messaging\Notification;
 use Kreait\Firebase\Exception\MessagingException;
 
 try {
@@ -18,14 +16,18 @@ try {
 
     $messaging = $factory->createMessaging();
 
-    $message = CloudMessage::new()
-        ->withNotification(Notification::create('Title', 'Body'))
-        ->withData(['key' => 'value', 'key2' => 'value', 'key3' => 'value'])
-        ->toToken($token);
+    $registrationTokens = [
+        $token
+    ];
 
-    $result = $messaging->send($message);
+    $topic = 'matchday';
+
+    # https://github.com/kreait/firebase-php/blob/7.x/docs/cloud-messaging.rst
+    // 訂閱主題
+    $result = $messaging->subscribeToTopic($topic, $registrationTokens);
 
     dd($result);
+
 } catch (MessagingException $e) {
     dd($e);
 } catch (Exception $e) {
