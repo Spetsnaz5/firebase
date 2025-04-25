@@ -46,8 +46,28 @@ curl --location 'https://fcm.googleapis.com/v1/projects/<YOUR-PROJECT-ID>/messag
 ```
 send.php 推播訊息(單個設備)
 
+curl --location 'http://127.0.0.1/send.php?token=fAb4XAlquKAQOzHygrfGYw%3AAPA91bGm6eZwvsdFOIdrRcGgHoEFDW1RTuG9zQrMTCq7cjfrVxsyJk8DvcphOApOcf6DX5_Gbh2-Bh9UCMpX1Tx0Q-3kQf4N9vWHao3ox7BDOw60K9vKlM4' \
+--header 'Content-Type: application/json' \
+--data '{
+    "title": "麵包超人",
+    "body": "你好!",
+    "attributes": {
+        "attributes1": "土司", 
+        "attributes2": "咖哩", 
+        "attributes3": "炸蝦"
+    }
+}'
+```
+```
 subscribeToTopic.php 訂閱主題
 
-sendToTopic.php 推播訊息至主題(需先訂閱)
 ```
+```
+sendToTopic.php 推播訊息至主題(需先訂閱)
+
+```
+
+
+
+
 
