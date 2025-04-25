@@ -34,7 +34,7 @@ try {
 
     $result = $messaging->send($message);
 
-    dd($result, $token, $contents, $title, $body, $attributes);
+    dd($result, $token, $contents);
 
 } catch (MessagingException $e) {
     dd($e);

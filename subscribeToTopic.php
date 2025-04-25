@@ -7,10 +7,17 @@ use Kreait\Firebase\Exception\MessagingException;
 
 try {
 
-    $token = $_GET['token'] ?? null;
+    $token = $_REQUEST['token'] ?? null;
 
     if (is_null($token))
         throw new Exception('無定義 token');
+
+    $contents = file_get_contents('php://input');
+
+    if (json_validate($contents))
+        $contents = json_decode($contents, true);
+
+    $topic = $contents['topic'] ?? 'matchday';
 
     $factory = (new Factory)->withServiceAccount('my-firebase-adminsdk.json');
 
@@ -19,8 +26,6 @@ try {
     $registrationTokens = [
         $token
     ];
-
-    $topic = 'matchday';
 
     # https://github.com/kreait/firebase-php/blob/7.x/docs/cloud-messaging.rst
     // 訂閱主題

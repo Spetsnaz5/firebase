@@ -9,7 +9,15 @@ use Kreait\Firebase\Exception\MessagingException;
 
 try {
 
-    $topic = 'matchday';
+    $contents = file_get_contents('php://input');
+
+    if (json_validate($contents))
+        $contents = json_decode($contents, true);
+
+    $topic = $contents['topic'] ?? 'matchday';
+    $title = $contents['title'] ?? '標題';
+    $body = $contents['body'] ?? '內容';
+    $attributes = $contents['attributes'] ?? [];
 
     $factory = (new Factory)->withServiceAccount('my-firebase-adminsdk.json');
 
@@ -17,8 +25,8 @@ try {
 
     // 推播至主題
     $message = CloudMessage::new()
-        ->withNotification(Notification::create('Title2', 'Body2'))
-        ->withData(['key' => 'value', 'key2' => 'value', 'key3' => 'value'])
+        ->withNotification(Notification::create($title, $body))
+        ->withData($attributes)
         ->toTopic($topic);
 
     $result = $messaging->send($message);
