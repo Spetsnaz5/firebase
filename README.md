@@ -70,6 +70,18 @@ curl --location 'http://127.0.0.1/subscribeToTopic.php?token=token' \
 ```
 sendToTopic.php 推播訊息至主題(需先訂閱)
 
+curl --location --request GET 'http://127.0.0.1/sendToTopic.php?token=token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "topic": "matchday",
+    "title": "麵包超人!",
+    "body": "你好!",
+    "attributes": {
+        "attributes1": "土司", 
+        "attributes2": "咖哩", 
+        "attributes3": "炸蝦"
+    }
+}'
 ```
 
 
