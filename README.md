@@ -61,6 +61,11 @@ curl --location 'http://127.0.0.1/send.php?token=token' \
 ```
 subscribeToTopic.php 訂閱主題
 
+curl --location 'http://127.0.0.1/subscribeToTopic.php?token=token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "topic": "matchday"
+}'
 ```
 ```
 sendToTopic.php 推播訊息至主題(需先訂閱)
