@@ -42,10 +42,8 @@ curl --location 'https://fcm.googleapis.com/v1/projects/<YOUR-PROJECT-ID>/messag
 <CLIENT_TOKEN> 由 receive.html 取得 firebase.js token
 ```
 
-## 功能
+## send.php 推播訊息(單個設備)
 ```
-send.php 推播訊息(單個設備)
-
 curl --location 'http://127.0.0.1/send.php?token=token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -58,18 +56,16 @@ curl --location 'http://127.0.0.1/send.php?token=token' \
     }
 }'
 ```
+## subscribeToTopic.php 訂閱主題
 ```
-subscribeToTopic.php 訂閱主題
-
 curl --location 'http://127.0.0.1/subscribeToTopic.php?token=token' \
 --header 'Content-Type: application/json' \
 --data '{
     "topic": "matchday"
 }'
 ```
+## sendToTopic.php 推播訊息至主題(需先訂閱)
 ```
-sendToTopic.php 推播訊息至主題(需先訂閱)
-
 curl --location --request GET 'http://127.0.0.1/sendToTopic.php?token=token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -83,7 +79,18 @@ curl --location --request GET 'http://127.0.0.1/sendToTopic.php?token=token' \
     }
 }'
 ```
-
+## unSubscribeFromTopic.php 取消訂閱主題
+```
+curl --location --request GET 'http://127.0.0.1/unSubscribeFromTopic.php?token=token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "topic": "matchday"
+}'
+```
+## unSubscribeFromAllTopics.php 取消訂閱所有主題
+```
+curl --location 'http://127.0.0.1/unSubscribeFromAllTopics.php?token=token'
+```
 
 
 
