@@ -23,7 +23,11 @@ try {
     $body = $contents['body'] ?? '內容';
     $attributes = $contents['attributes'] ?? [];
 
-    $factory = (new Factory)->withServiceAccount('my-firebase-adminsdk.json');
+    $file = 'my-firebase-adminsdk.json';
+    if (! file_exists($file))
+        throw new Exception('無 Firebase 設定檔');
+
+    $factory = (new Factory)->withServiceAccount($file);
 
     $messaging = $factory->createMessaging();
 
